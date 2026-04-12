@@ -187,10 +187,7 @@ with st.sidebar:
         st.markdown(
             f"<div class='metric-card'>"
             f"  <div style='color:#64748b;font-size:0.72rem;font-weight:600;'>{vm['label'].upper()}</div>"
-            f"  <div style='color:#e2e8f0;font-size:0.88rem;font-weight:600;margin-top:0.15rem;'>"
-            f"    {vm['user']}@{vm['host']}"
-            f"  </div>"
-            f"  <div style='color:{color};font-size:0.8rem;margin-top:0.2rem;'>{dot}</div>"
+            f"  <div style='color:{color};font-size:0.8rem;margin-top:0.35rem;'>{dot}</div>"
             f"</div>",
             unsafe_allow_html=True,
         )
@@ -295,7 +292,6 @@ client    = get_client(active_vm_id)
 st.markdown(
     f"<div style='color:#64748b;font-size:0.82rem;margin-bottom:0.2rem;'>"
     f"Controlling: <strong style='color:#a5b4fc;'>{active_vm['label']}</strong>"
-    f" — {active_vm['user']}@{active_vm['host']}"
     f"</div>",
     unsafe_allow_html=True,
 )
@@ -594,7 +590,7 @@ with tab_system:
             if st.session_state.get("confirm_shutdown"):
                 with st.spinner("Sending shutdown command…"):
                     sc.shutdown(client)
-                disconnect_vm()
+                disconnect_vm(active_vm_id)
                 st.session_state.confirm_shutdown = False
                 st.success("Shutdown command sent. VM will power off.")
             else:
@@ -613,7 +609,7 @@ with tab_system:
             if st.session_state.get("confirm_restart"):
                 with st.spinner("Sending restart command…"):
                     sc.restart(client)
-                disconnect_vm()
+                disconnect_vm(active_vm_id)
                 st.session_state.confirm_restart = False
                 st.success("Restart command sent.")
             else:

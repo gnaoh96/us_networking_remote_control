@@ -2,7 +2,9 @@
 
 Ứng dụng web cho phép quản lý **hai máy ảo Windows 11** từ máy Mac thông qua giao diện Streamlit — sử dụng SSH/SFTP làm giao thức duy nhất, không cần cài agent hay phần mềm remote desktop bên thứ ba.
 
-> **Mốc Giữa Kỳ** — Sprint 0–4 hoàn thành.
+<!-- > **Mốc Giữa Kỳ** — Sprint 0–4 hoàn thành. -->
+
+![Overview](overview.png)
 
 ---
 
@@ -22,8 +24,8 @@ Mac (Streamlit tại localhost:8501)
          └── C:\Temp\   (tất cả tệp đầu ra lưu tại đây)
          └── Task Scheduler  (cầu nối Session 0 → Session 1)
 ```
-
-**Vấn đề cốt lõi — Session 0 Isolation:** Tiến trình SSH chạy trong Session 0 của Windows (không có màn hình). Các thao tác cần giao diện đồ họa (chụp màn hình, ghi phím) phải được chuyển sang Session 1 qua Windows Task Scheduler với `LogonType=Interactive`. Một tệp VBScript đảm bảo không có cửa sổ CMD/PowerShell nào xuất hiện trên màn hình VM.
+<!-- 
+**Vấn đề cốt lõi — Session 0 Isolation:** Tiến trình SSH chạy trong Session 0 của Windows (không có màn hình). Các thao tác cần giao diện đồ họa (chụp màn hình, ghi phím) phải được chuyển sang Session 1 qua Windows Task Scheduler với `LogonType=Interactive`. Một tệp VBScript đảm bảo không có cửa sổ CMD/PowerShell nào xuất hiện trên màn hình VM. -->
 
 ---
 
@@ -32,8 +34,8 @@ Mac (Streamlit tại localhost:8501)
 Thanh bên hiển thị cả hai VM cùng lúc. Người dùng có thể:
 - **Kết nối / Ngắt kết nối** từng VM độc lập
 - **Chuyển VM đang hoạt động** bằng nút radio — tất cả các tab (Tiến trình, Ảnh màn hình, Keylogger, Tệp, Hệ thống) tức thì chuyển sang VM được chọn
-- Cả hai VM dùng chung một khoá SSH (`~/.ssh/id_ed25519`)
-
+<!-- - Cả hai VM dùng chung một khoá SSH (`~/.ssh/id_ed25519`) -->
+<!-- 
 ```ini
 # .env
 VM1_HOST = "192.168.64.2"
@@ -42,7 +44,7 @@ VM2_HOST = "192.168.64.4"
 VM2_USER = "vm1"
 VM_KEY_PATH  = "~/.ssh/id_ed25519"
 APP_PASSWORD = "mat_khau_cua_ban"
-```
+``` -->
 
 ---
 
@@ -52,25 +54,30 @@ APP_PASSWORD = "mat_khau_cua_ban"
 - Liệt kê tất cả tiến trình (`tasklist /FO CSV`) — có tìm kiếm và lọc
 - **Kill** tiến trình bất kỳ theo tên (`taskkill /IM tên /F`)
 - **Khởi động** ứng dụng (ví dụ: `notepad.exe`) — chạy qua Task Scheduler trong Session 1 để xuất hiện trên màn hình thực của VM
+![Process Manager](images/process_mg.png)
 
 ### 📸 Chụp Màn hình
 - Chụp màn hình thực của VM dùng `CopyFromScreen` (PowerShell + `System.Windows.Forms`)
 - Thực thi hoàn toàn ẩn: `Task → wscript.exe → powershell -WindowStyle Hidden`
 - Trả về ảnh PNG hiển thị và tải về ngay trên trình duyệt
+![Screen Capture](images/screen_capture.png)
 
 ### ⌨️ Ghi Phím (Keylogger)
 - Ghi toàn bộ phím bấm trên VM trong khoảng thời gian định sẵn (5–60 giây)
 - `pynput` chạy qua: `Task → wscript.exe → python.exe` (tất cả ẩn, chặn đến khi xong)
 - Đường dẫn tuyệt đối tới `python.exe` được phân giải tự động để xử lý vấn đề PATH của Task Scheduler
 - Trả về log văn bản, có thể tải về
+![Keylogger](images/keylogger.png)
 
 ### 📁 Truyền Tệp
 - **Tải lên** tệp từ Mac → `C:\Temp\<tên>` trên VM qua SFTP
 - **Tải xuống** tệp từ `C:\Temp\` trên VM → hộp thoại lưu của trình duyệt
+![File Transfer](images/file_transfer.png)
 
 ### 🔴 Điều khiển Hệ thống
 - **Tắt máy** và **Khởi động lại** từ xa với xác nhận hai lần
 - Dùng lệnh `shutdown /s /t 0` / `shutdown /r /t 0`
+![System Control](images/system_control.png)
 
 ---
 
