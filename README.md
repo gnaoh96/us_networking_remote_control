@@ -4,7 +4,7 @@
 
 <!-- > **Mốc Giữa Kỳ** — Sprint 0–4 hoàn thành. -->
 
-![Overview](overview.png)
+![Overview](images/overview.png)
 
 ---
 
