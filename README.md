@@ -163,7 +163,7 @@ requirements.txt   # streamlit, paramiko, python-dotenv, pynput
 
 ---
 
-## Hạn chế Đã biết
+## Hạn chế
 
 | Vấn đề | Ghi chú |
 |---|---|
