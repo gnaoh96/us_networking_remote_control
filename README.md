@@ -99,6 +99,58 @@ streamlit run app/main.py
 
 ---
 
+## Chia sẻ qua Cloudflare Tunnel
+
+Cloudflare Tunnel cho phép người dùng truy cập ứng dụng từ bất kỳ đâu mà **không cần mở cổng router hay expose IP**. Kết nối SSH tới VM vẫn hoàn toàn nội bộ trên máy Mac.
+
+```
+Trình duyệt của người dùng
+      │  HTTPS (URL công khai)
+      ▼
+Cloudflare Edge
+      │  Tunnel mã hoá
+      ▼
+cloudflared (chạy trên Mac)
+      │  localhost:8501
+      ▼
+Streamlit app
+      │  SSH — vẫn nội bộ, không ra ngoài
+      ▼
+Windows VMs (192.168.64.x)
+```
+
+### Khởi động nhanh (không cần tài khoản)
+
+```bash
+# Cài cloudflared
+brew install cloudflared
+
+# Chạy Streamlit (terminal 1)
+streamlit run app/main.py
+
+# Tạo tunnel (terminal 2)
+cloudflared tunnel --url http://localhost:8501
+```
+
+Cloudflare in ra URL tạm thời như `https://random-words.trycloudflare.com` — chia sẻ URL đó với người dùng.
+<!-- 
+### Tunnel cố định (cần tài khoản Cloudflare + domain)
+
+```bash
+cloudflared tunnel login
+cloudflared tunnel create rc-app
+cloudflared tunnel route dns rc-app app.yourdomain.com
+cloudflared tunnel run rc-app
+```
+
+> [!IMPORTANT]
+> **Đổi mật khẩu trước khi chia sẻ** — mật khẩu mặc định `admin` quá yếu khi ứng dụng có URL công khai. Cập nhật `APP_PASSWORD` trong `.env`.
+
+> [!NOTE]
+> Mỗi đồng đội có phiên riêng (`st.session_state` độc lập per-browser) và phải tự nhấn **Connect** để mở SSH. Tránh để nhiều người cùng điều khiển một VM. -->
+
+---
+
 ## Cấu trúc Dự án
 
 ```
