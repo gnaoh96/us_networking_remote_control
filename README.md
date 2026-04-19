@@ -54,7 +54,8 @@ VM2_HOST = "192.168.64.4"
 VM2_USER = "vm1"
 VM_KEY_PATH  = "~/.ssh/id_ed25519"
 APP_PASSWORD = "mat_khau_cua_ban"
-``` -->
+``` 
+-->
 
 ---
 
