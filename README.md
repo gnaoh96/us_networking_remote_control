@@ -8,32 +8,43 @@
 
 ---
 
+## 📑 Bảng tra cứu (Mục lục)
+- [Cơ chế Hoạt động](#cơ-chế-hoạt-động)
+- [Điều khiển Nhiều VM](#điều-khiển-nhiều-vm)
+- [Tính năng](#tính-năng)
+- [Cài đặt](#cài-đặt)
+- [Chia sẻ qua Cloudflare Tunnel](#chia-sẻ-qua-cloudflare-tunnel)
+- [Cấu trúc Dự án](#cấu-trúc-dự-án)
+- [Hạn chế](#hạn-chế)
+
+---
+
 ## Cơ chế Hoạt động
 
 ```
-Mac (Streamlit tại localhost:8501)
-         │
-         │  SSH + SFTP  (xác thực khoá Ed25519)
-         ▼
- ┌───────────────┐    ┌───────────────┐
- │   VM 1        │    │   VM 2        │
- │ 192.168.64.2  │    │ 192.168.64.4  │
- │ OpenSSH :22   │    │ OpenSSH :22   │
- └───────────────┘    └───────────────┘
-         │
-         └── C:\Temp\   (tất cả tệp đầu ra lưu tại đây)
-         └── Task Scheduler  (cầu nối Session 0 → Session 1)
+Trình duyệt của người dùng
+      │  HTTPS (URL công khai)
+      ▼
+Cloudflare Edge
+      │  Tunnel mã hoá
+      ▼
+cloudflared (chạy trên Mac)
+      │  localhost:8501
+      ▼
+Streamlit app
+      │  SSH — vẫn nội bộ, không ra ngoài
+      ▼
+Windows VMs (192.168.64.x)
 ```
 <!-- 
 **Vấn đề cốt lõi — Session 0 Isolation:** Tiến trình SSH chạy trong Session 0 của Windows (không có màn hình). Các thao tác cần giao diện đồ họa (chụp màn hình, ghi phím) phải được chuyển sang Session 1 qua Windows Task Scheduler với `LogonType=Interactive`. Một tệp VBScript đảm bảo không có cửa sổ CMD/PowerShell nào xuất hiện trên màn hình VM. -->
 
----
-
-## Điều khiển Nhiều VM
+<!-- ---
+<!-- ## Điều khiển Nhiều VM
 
 Thanh bên hiển thị cả hai VM cùng lúc. Người dùng có thể:
 - **Kết nối / Ngắt kết nối** từng VM độc lập
-- **Chuyển VM đang hoạt động** bằng nút radio — tất cả các tab (Tiến trình, Ảnh màn hình, Keylogger, Tệp, Hệ thống) tức thì chuyển sang VM được chọn
+- **Chuyển VM đang hoạt động** bằng nút radio — tất cả các tab tức thì chuyển sang VM được chọn --> -->
 <!-- - Cả hai VM dùng chung một khoá SSH (`~/.ssh/id_ed25519`) -->
 <!-- 
 ```ini
@@ -103,7 +114,9 @@ streamlit run app/main.py
 
 Cloudflare Tunnel cho phép người dùng truy cập ứng dụng từ bất kỳ đâu mà **không cần mở cổng router hay expose IP**. Kết nối SSH tới VM vẫn hoàn toàn nội bộ trên máy Mac.
 
-```
+![Couldflare Tunnel](images/cf_tunnel.png)
+
+<!-- ```
 Trình duyệt của người dùng
       │  HTTPS (URL công khai)
       ▼
@@ -117,7 +130,7 @@ Streamlit app
       │  SSH — vẫn nội bộ, không ra ngoài
       ▼
 Windows VMs (192.168.64.x)
-```
+``` -->
 
 ### Khởi động nhanh (không cần tài khoản)
 
