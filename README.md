@@ -1,6 +1,6 @@
 # 🖥️ Ứng dụng Điều khiển PC Từ xa
 
-Ứng dụng web cho phép quản lý **hai máy ảo Windows 11** từ máy Mac thông qua giao diện Streamlit — sử dụng SSH/SFTP làm giao thức duy nhất, không cần cài agent hay phần mềm remote desktop bên thứ ba.
+Ứng dụng web cho phép quản lý **hai máy ảo Windows 11** từ máy Client thông qua giao diện Streamlit/Python — sử dụng SSH/SFTP làm giao thức duy nhất, không cần cài agent hay phần mềm remote desktop bên thứ ba.
 
 <!-- > **Mốc Giữa Kỳ** — Sprint 0–4 hoàn thành. -->
 

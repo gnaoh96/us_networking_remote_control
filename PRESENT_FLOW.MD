@@ -1,5 +1,17 @@
 # Kịch bản Thuyết trình (App Demo Speech Flow)
 
+1. Tổng quan -> Tính năng -> Xây dựng -> Công cụ
+2. Truy cập URL -> ClouldFlare URL
+3. CLoudflare Tunnel
+4. Đăng nhập vào app
+5. Giới thiệu tổng quan giao diện
+6. Triết lý thiết kế
+7. Demo các tính năng
+8. Demo cả 2 máy so sánh before & after
+9. Demo Shutdown, Restart
+10. Nêu hạn chế (nói ý thiếu tính năng bật webcam) và close project.
+
+
 ## 0. Tổng quan dự án (Overview)
 + **Giới thiệu:** Xin chào thầy và các bạn, hôm nay nhóm em xin trình bày ứng dụng "Remote PC Control".
 + **Mục đích:** Ứng dụng web giúp quản lý và điều khiển từ xa các máy ảo Windows mà không cần cài đặt thêm phần mềm agent (như TeamViewer) lên máy host. Mọi thứ được xử lý nội bộ qua giao thức SSH chuẩn và deploy lên mạng internet chứ không chỉ localhost.
