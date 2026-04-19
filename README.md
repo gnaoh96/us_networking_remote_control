@@ -8,6 +8,12 @@
 
 ---
 
+## 📄 Báo cáo & Demo
+- 📄 **Báo cáo:** [Nhấn vào để xem báo cáo](https://docs.google.com/document/d/1pQerGNEQ2DeU9WTD01O3CYGhOGoqEsFK/edit?usp=sharing&ouid=109310758897463261720&rtpof=true&sd=true)
+- 🎥 **Video Demo:** [Nhấn vào để xem Demo](https://youtu.be/hZV0mm_RlFY?si=Pfozt_7u9qkv7E59)
+
+---
+
 ## 📑 Mục lục
 - [Cơ chế Hoạt động](#cơ-chế-hoạt-động)
 - [Tính năng](#tính-năng)
@@ -18,7 +24,7 @@
 
 ---
 
-## Cơ chế Hoạt động
+## ⚙️ Cơ chế Hoạt động
 
 ```
 Trình duyệt của người dùng
@@ -59,7 +65,7 @@ APP_PASSWORD = "mat_khau_cua_ban"
 
 ---
 
-## Tính năng
+## ✨ Tính năng
 
 ### ⚙️ Quản lý Tiến trình
 - Liệt kê tất cả tiến trình (`tasklist /FO CSV`) — có tìm kiếm và lọc
@@ -92,7 +98,7 @@ APP_PASSWORD = "mat_khau_cua_ban"
 
 ---
 
-## Cài đặt
+## 📦 Cài đặt
 
 ```bash
 # 1. Tạo môi trường ảo và cài gói
@@ -110,7 +116,7 @@ streamlit run app/main.py
 
 ---
 
-## Chia sẻ qua Cloudflare Tunnel
+## 🌐 Chia sẻ qua Cloudflare Tunnel
 
 Cloudflare Tunnel cho phép người dùng truy cập ứng dụng từ bất kỳ đâu mà **không cần mở cổng router hay expose IP**. Kết nối SSH tới VM vẫn hoàn toàn nội bộ trên máy Mac.
 
@@ -164,7 +170,7 @@ cloudflared tunnel run rc-app
 
 ---
 
-## Cấu trúc Dự án
+## 🗂️ Cấu trúc Dự án
 
 ```
 app/
@@ -176,7 +182,7 @@ requirements.txt   # streamlit, paramiko, python-dotenv, pynput
 
 ---
 
-## Hạn chế
+## ⚠️ Hạn chế
 
 | Vấn đề | Ghi chú |
 |---|---|
