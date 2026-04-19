@@ -27,13 +27,13 @@ Trình duyệt của người dùng
 Cloudflare Edge
       │  Tunnel mã hoá
       ▼
-cloudflared (chạy trên Mac)
-      │  localhost:8501
+cloudflared (chạy local)
+      │  localhost
       ▼
 Streamlit app
-      │  SSH — vẫn nội bộ, không ra ngoài
+      │  SSH — nội bộ
       ▼
-Windows VMs (192.168.64.x)
+Windows VMs
 ```
 <!-- 
 **Vấn đề cốt lõi — Session 0 Isolation:** Tiến trình SSH chạy trong Session 0 của Windows (không có màn hình). Các thao tác cần giao diện đồ họa (chụp màn hình, ghi phím) phải được chuyển sang Session 1 qua Windows Task Scheduler với `LogonType=Interactive`. Một tệp VBScript đảm bảo không có cửa sổ CMD/PowerShell nào xuất hiện trên màn hình VM. -->
@@ -55,7 +55,7 @@ VM2_USER = "vm1"
 VM_KEY_PATH  = "~/.ssh/id_ed25519"
 APP_PASSWORD = "mat_khau_cua_ban"
 ``` 
--->
+ -->
 
 ---
 
