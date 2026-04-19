@@ -8,7 +8,7 @@
 
 ---
 
-## 📑 Bảng tra cứu (Mục lục)
+## 📑 Mục lục
 - [Cơ chế Hoạt động](#cơ-chế-hoạt-động)
 <!-- - [Điều khiển Nhiều VM](#điều-khiển-nhiều-vm) -->
 - [Tính năng](#tính-năng)
