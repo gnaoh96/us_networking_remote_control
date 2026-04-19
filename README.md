@@ -10,7 +10,7 @@
 
 ## 📑 Bảng tra cứu (Mục lục)
 - [Cơ chế Hoạt động](#cơ-chế-hoạt-động)
-- [Điều khiển Nhiều VM](#điều-khiển-nhiều-vm)
+<!-- - [Điều khiển Nhiều VM](#điều-khiển-nhiều-vm) -->
 - [Tính năng](#tính-năng)
 - [Cài đặt](#cài-đặt)
 - [Chia sẻ qua Cloudflare Tunnel](#chia-sẻ-qua-cloudflare-tunnel)
